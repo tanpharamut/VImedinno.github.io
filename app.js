@@ -34,14 +34,47 @@ window.onscroll = () => {
 };
 
 /*--------------------------- SHOW MENU ------------------------------*/
-const showMenu = (toggleId, navId) =>{
+const showMenu = (toggleId, navId) => {
     const toggle = document.getElementById(toggleId),
-    nav = document.getElementById(navId)
+        nav = document.getElementById(navId)
 
-    toggle.addEventListener('click', () =>{
+    toggle.addEventListener('click', () => {
         nav.classList.toggle('show-menu')
         toggle.classList.toggle('show-icon')
     })
 }
 
-showMenu('nav-toggle','nav-menu')
+showMenu('nav-toggle', 'nav-menu')
+
+function slideSlider() {
+    const sliderScroller = $("#slider-scroller");
+    const currentLeft = parseInt(sliderScroller.css("left"));
+    const itemWidth = $(".slider-item").outerWidth(true); // true includes margin
+    const newLeft = currentLeft - itemWidth;
+
+    sliderScroller.css({ "left": currentLeft + "px", "transition": "all 0s linear" });
+    setTimeout(() => {
+        sliderScroller.css({ "left": newLeft + "px", "transition": "all 5s linear" });
+
+        setTimeout(() => {
+            moveSliderItem();
+        }, 5000); // Match this with the transition duration
+    }, 50); // A small delay to ensure transition reset
+}
+
+function moveSliderItem() {
+    const sliderScroller = $("#slider-scroller");
+    const itemWidth = $(".slider-item").outerWidth(true); // true includes margin
+    const currentLeft = parseInt(sliderScroller.css("left"));
+
+    if (currentLeft <= -itemWidth * ($(".slider-item").length - 1)) {
+        sliderScroller.children("div").first().detach().appendTo(sliderScroller);
+        sliderScroller.css({ "left": "0px", "transition": "none" });
+    }
+
+    slideSlider();
+}
+
+$(document).ready(function() {
+    slideSlider();
+});
