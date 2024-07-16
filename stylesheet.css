@@ -2925,8 +2925,6 @@ figcaption {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 16px;
-    box-shadow: 0 26px 94px rgba(4, 11, 19, 0.5)
 }
 
 .slider-item-m {
@@ -2945,12 +2943,10 @@ figcaption {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 16px;
-    box-shadow: 0 26px 94px rgba(4, 11, 19, 0.5)
     
 }
 
-.slider-item-lg-3 {
+.slider-item-l-3 {
     width: 900px; /* Adjust this width to fit your needs */
     height: 300px; /* Adjust the height to fit your needs */
     margin: 20px; /* This margin creates the gap between items */
