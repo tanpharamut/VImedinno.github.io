@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        /* IMAGES SLIDER */
+        #slider-container {
+            position: absolute;
+            height: 150px;
+            width: 100%;
+            max-width: 1000px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            overflow: hidden;
+            box-shadow: 0 0 15px #888;
+          }
+          
+          #slider-scroller {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: calc(260px * 6);
+            transition: all 1s ease;
+          }
+          
+          .slider-item {
+            width: 220px;
+            height: 110px;
+            display: inline-block;
+            margin: 20px;
+            position: relative;
+          }
+          
+          .slider-item img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 200px;
+            max-height: 100px;
+          }
+          
+    </style>
+</head>
+<body>
+
+<div id="slider-container">
+    <div id="slider-scroller">
+        <div class="slider-item"><img src="https://via.placeholder.com/250x150/0000ff/fff?text=Image+1" /></div>
+        <div class="slider-item"><img src="https://via.placeholder.com/200x100/ff0000/fff?text=Image+2" /></div>
+        <div class="slider-item"><img src="https://via.placeholder.com/200x150/acff7f/000?text=Image+3" /></div>
+        <div class="slider-item"><img src="https://via.placeholder.com/300x150/fff000/000?text=Image+4+is+long" /></div>
+        <div class="slider-item"><img src="https://via.placeholder.com/350x250/6a0dad/000?text=Image+5+is+big" /></div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function slideSlider() {
+        const sliderScroller = $("#slider-scroller");
+        const itemWidth = $(".slider-item").outerWidth(true); // true includes margin
+        const newLeft = parseInt(sliderScroller.css("left")) - itemWidth;
+
+        sliderScroller.css("transition", "left 5s linear");
+        sliderScroller.css("left", newLeft + "px");
+
+        setTimeout(() => {
+            moveSliderItem();
+        }, 5000); // Match this with the transition duration
+    }
+
+    function moveSliderItem() {
+        const sliderScroller = $("#slider-scroller");
+        const itemWidth = $(".slider-item").outerWidth(true); // true includes margin
+
+        sliderScroller.children(".slider-item").first().detach().appendTo(sliderScroller);
+        sliderScroller.css("transition", "none");
+        sliderScroller.css("left", "0px");
+
+        setTimeout(() => {
+            slideSlider();
+        }, 50); // Small delay to ensure transition reset
+    }
+
+    $(document).ready(function() {
+        slideSlider();
+    });
+</script>
+
+</body>
+</html>
