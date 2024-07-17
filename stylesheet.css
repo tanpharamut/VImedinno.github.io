@@ -149,6 +149,7 @@ a {
 }
 
 .header-logo-link {
+    display: flex;
     padding-left: 0;
     transition: opacity .3s;
     color: var(--neutral--100);
@@ -2774,10 +2775,16 @@ figcaption {
     .nav__toggle{
         display: none;
     }
+
+    .nav__data{
+        padding-right: 52%;
+    }
+
     .nav__list{
         height: 100%;
         display: flex;
         column-gap: 3rem;
+        
     }
 
     .nav__link{
